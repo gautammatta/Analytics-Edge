@@ -1,5 +1,5 @@
 getwd()
-setwd("C://Users/i0318/Downloads/Datasets/Analytics Edge/Unit 3/Data")
+setwd("~Analytics Edge/Unit 3/Data")
 
 
 ########### Load the Parole data ############
