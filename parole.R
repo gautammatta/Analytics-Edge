@@ -2,7 +2,7 @@ getwd()
 setwd("C://Users/i0318/Downloads/Datasets/Analytics Edge/Unit 3/Data")
 
 
-########### Load the Songs data ############
+########### Load the Parole data ############
 
 parole <- read.csv("parole.csv")
 str(parole)
