@@ -20,7 +20,7 @@ table(test$isB)
 
 library(rpart)
 library(rpart.plot)
-
+library(randomForest)
 
 CARTb <- rpart(isB ~ . - letter, data=train, method="class")
 prp(CARTb)
@@ -28,3 +28,31 @@ prp(CARTb)
 predB <- predict(CARTb,newdata = test, type = 'class')
 nrow(predB)
 table(test$isB, predB)
+
+
+
+letters$letter = as.factor( letters$letter )
+str(letters)
+set.seed(2000)
+
+split <- sample.split(letters$letter, SplitRatio = 0.5)
+train <- subset(letters, split == TRUE)
+test <- subset(letters, split == FALSE)
+
+table(train$letter)
+
+table( test$letter == 'P')
+
+LettersCART <- rpart(letter ~ . - isB, data = train, method = 'class')
+prp(LettersCART)
+
+predLettersCART <- predict(LettersCART, newdata = test, type ='class')
+table(test$letter, predLettersCART)
+
+set.seed(1000)
+
+randomLetters <- randomForest(letter ~ . - isB, data = train)
+
+predrandomLetters <- predict(randomLetters, newdata = test)
+table(test$letter, predrandomLetters)
+
